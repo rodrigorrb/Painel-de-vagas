@@ -1,0 +1,7 @@
+{
+  "_comentario": "Empresas monitoradas via Greenhouse/Lever. Cobertura limitada para perfil de ITSM/Service Delivery (a maioria das vagas desse tipo no Brasil esta em Gupy/LinkedIn/Kenoby, sem API publica aberta). Veja README para a lista de empresas-alvo para busca manual.",
+  "empresas": [
+    { "nome": "StoneCo", "fonte": "greenhouse", "slug": "stone" },
+    { "nome": "Loft", "fonte": "lever", "slug": "loft" }
+  ]
+}
