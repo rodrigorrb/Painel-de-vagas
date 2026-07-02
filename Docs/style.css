@@ -1,0 +1,210 @@
+:root {
+  --bg: #0F1526;
+  --surface: #171F38;
+  --surface-2: #1E2A4A;
+  --texto: #EDEAE0;
+  --texto-fraco: #97A0C3;
+  --amber: #E8A33D;
+  --teal: #5FD3C4;
+  --linha: #2B3658;
+
+  --f-display: "Space Grotesk", sans-serif;
+  --f-corpo: "IBM Plex Sans", sans-serif;
+  --f-mono: "IBM Plex Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--texto);
+  font-family: var(--f-corpo);
+  min-height: 100vh;
+}
+
+.cabecalho {
+  padding: 2.5rem 1.5rem 1.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.cabecalho__marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.cabecalho__ponto {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 10px 2px rgba(232, 163, 61, 0.6);
+  flex-shrink: 0;
+}
+
+.cabecalho h1 {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.cabecalho h1 span {
+  color: var(--amber);
+}
+
+.cabecalho__legenda {
+  color: var(--texto-fraco);
+  font-size: 0.95rem;
+  margin: 0.5rem 0 0 1.2rem;
+}
+
+.painel {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+.controles {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.controles input,
+.controles select {
+  background: var(--surface);
+  border: 1px solid var(--linha);
+  color: var(--texto);
+  font-family: var(--f-corpo);
+  font-size: 0.9rem;
+  padding: 0.65rem 0.8rem;
+  border-radius: 4px;
+  outline: none;
+}
+
+.controles input::placeholder { color: var(--texto-fraco); }
+
+.controles input:focus,
+.controles select:focus {
+  border-color: var(--amber);
+}
+
+.manifesto {
+  border: 1px solid var(--linha);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.manifesto__cabecalho,
+.linha-vaga {
+  display: grid;
+  grid-template-columns: 3rem 3fr 1.6fr 1.4fr 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+}
+
+.manifesto__cabecalho {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+  border-bottom: 1px solid var(--linha);
+}
+
+.linha-vaga {
+  border-bottom: 1px solid var(--linha);
+  transition: background 0.15s ease;
+}
+
+.linha-vaga:last-child { border-bottom: none; }
+
+.linha-vaga:hover { background: var(--surface-2); }
+
+.col--num {
+  font-family: var(--f-mono);
+  color: var(--texto-fraco);
+  font-size: 0.85rem;
+}
+
+.linha-vaga .col--titulo {
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.linha-vaga .col--titulo small {
+  display: block;
+  color: var(--texto-fraco);
+  font-size: 0.78rem;
+  font-weight: 400;
+  margin-top: 0.15rem;
+}
+
+.linha-vaga .col--empresa,
+.linha-vaga .col--local {
+  font-size: 0.88rem;
+  color: var(--texto-fraco);
+}
+
+.tag-fonte {
+  font-family: var(--f-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  border: 1px solid var(--linha);
+  color: var(--teal);
+  white-space: nowrap;
+}
+
+.linha-vaga .col--acao a {
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  color: var(--amber);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.linha-vaga .col--acao a:hover { text-decoration: underline; }
+
+.estado-vazio {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: var(--texto-fraco);
+  font-size: 0.92rem;
+}
+
+.estado-vazio code {
+  font-family: var(--f-mono);
+  background: var(--surface-2);
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+}
+
+.rodape {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  color: var(--texto-fraco);
+}
+
+@media (max-width: 720px) {
+  .controles { grid-template-columns: 1fr 1fr; }
+  .manifesto__cabecalho { display: none; }
+  .linha-vaga {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+    padding: 1rem;
+  }
+  .col--num { display: none; }
+}
