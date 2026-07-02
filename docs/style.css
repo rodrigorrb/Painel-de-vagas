@@ -24,7 +24,7 @@ body {
 }
 
 .cabecalho {
-  padding: 2.5rem 1.5rem 1.5rem;
+  padding: 2rem 1.25rem 1.25rem;
   max-width: 960px;
   margin: 0 auto;
 }
@@ -47,32 +47,39 @@ body {
 .cabecalho h1 {
   font-family: var(--f-display);
   font-weight: 700;
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-size: clamp(1.5rem, 6vw, 2.4rem);
   letter-spacing: 0.02em;
   margin: 0;
 }
 
-.cabecalho h1 span {
-  color: var(--amber);
-}
+.cabecalho h1 span { color: var(--amber); }
 
 .cabecalho__legenda {
   color: var(--texto-fraco);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   margin: 0.5rem 0 0 1.2rem;
+  line-height: 1.4;
 }
 
 .painel {
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 1.5rem 3rem;
+  padding: 0 1.25rem 3rem;
 }
 
+/* ---------- Controles de busca (mobile-first: empilhados) ---------- */
+
 .controles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.controles__linha {
   display: grid;
-  grid-template-columns: 2fr 1.2fr 1fr 1fr;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
 }
 
 .controles input,
@@ -81,10 +88,14 @@ body {
   border: 1px solid var(--linha);
   color: var(--texto);
   font-family: var(--f-corpo);
-  font-size: 0.9rem;
-  padding: 0.65rem 0.8rem;
-  border-radius: 4px;
+  font-size: 1rem;           /* 16px: evita zoom automatico no iOS ao focar */
+  padding: 0.75rem 0.85rem;
+  border-radius: 6px;
   outline: none;
+  width: 100%;
+  min-height: 48px;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .controles input::placeholder { color: var(--texto-fraco); }
@@ -93,6 +104,133 @@ body {
 .controles select:focus {
   border-color: var(--amber);
 }
+
+.botao-buscar {
+  min-height: 50px;
+  border: none;
+  border-radius: 6px;
+  background: var(--amber);
+  color: #17130A;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: filter 0.15s ease;
+}
+
+.botao-buscar:hover { filter: brightness(1.08); }
+.botao-buscar:active { filter: brightness(0.94); }
+.botao-buscar:disabled { cursor: default; }
+
+.botao-buscar__spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(23, 19, 10, 0.3);
+  border-top-color: #17130A;
+  display: none;
+}
+
+.botao-buscar.carregando .botao-buscar__spinner {
+  display: inline-block;
+  animation: girar 0.7s linear infinite;
+}
+
+.botao-buscar.carregando .botao-buscar__texto::after {
+  content: "...";
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Painel de configuracao da busca ampliada ---------- */
+
+.config-ampliada {
+  background: var(--surface);
+  border: 1px solid var(--linha);
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-size: 0.88rem;
+  color: var(--texto-fraco);
+}
+
+.config-ampliada summary {
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  color: var(--teal);
+  list-style: none;
+}
+
+.config-ampliada summary::-webkit-details-marker { display: none; }
+
+.config-ampliada summary::before {
+  content: "▸ ";
+}
+
+.config-ampliada[open] summary::before {
+  content: "▾ ";
+}
+
+.config-ampliada__corpo {
+  padding: 0 1rem 1.1rem;
+  line-height: 1.5;
+}
+
+.config-ampliada__corpo a { color: var(--amber); }
+
+.config-ampliada__corpo ol {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.config-ampliada__campos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.85rem 0;
+}
+
+.config-ampliada__campos input {
+  background: var(--surface-2);
+  border: 1px solid var(--linha);
+  color: var(--texto);
+  padding: 0.6rem 0.7rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  min-height: 44px;
+}
+
+.config-ampliada__campos button {
+  min-height: 44px;
+  border: 1px solid var(--teal);
+  background: transparent;
+  color: var(--teal);
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.config-ampliada__aviso {
+  font-size: 0.78rem;
+  opacity: 0.85;
+}
+
+.config-ampliada__status {
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  color: var(--amber);
+}
+
+/* ---------- Lista de vagas ---------- */
 
 .manifesto {
   border: 1px solid var(--linha);
@@ -125,7 +263,6 @@ body {
 }
 
 .linha-vaga:last-child { border-bottom: none; }
-
 .linha-vaga:hover { background: var(--surface-2); }
 
 .col--num {
@@ -167,10 +304,11 @@ body {
 
 .linha-vaga .col--acao a {
   font-family: var(--f-mono);
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   color: var(--amber);
   text-decoration: none;
   white-space: nowrap;
+  padding: 0.4rem 0;
 }
 
 .linha-vaga .col--acao a:hover { text-decoration: underline; }
@@ -191,20 +329,73 @@ body {
 
 .rodape {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.2rem;
   margin-top: 1rem;
   font-family: var(--f-mono);
   font-size: 0.75rem;
   color: var(--texto-fraco);
 }
 
+/* ---------- Mobile: linhas viram cartoes com rotulo ---------- */
+
 @media (max-width: 720px) {
-  .controles { grid-template-columns: 1fr 1fr; }
   .manifesto__cabecalho { display: none; }
+
   .linha-vaga {
     grid-template-columns: 1fr;
-    gap: 0.3rem;
+    gap: 0.35rem;
     padding: 1rem;
   }
+
   .col--num { display: none; }
+
+  .linha-vaga .col--empresa::before,
+  .linha-vaga .col--local::before {
+    font-family: var(--f-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    color: var(--texto-fraco);
+    opacity: 0.7;
+    margin-right: 0.4rem;
+  }
+
+  .linha-vaga .col--empresa::before { content: "Empresa: "; }
+  .linha-vaga .col--local::before { content: "Local: "; }
+
+  .linha-vaga .col--acao {
+    margin-top: 0.3rem;
+  }
+
+  .linha-vaga .col--acao a {
+    display: inline-block;
+    border: 1px solid var(--amber);
+    border-radius: 5px;
+    padding: 0.5rem 0.9rem;
+  }
+}
+
+/* ---------- Telas maiores: controles lado a lado ---------- */
+
+@media (min-width: 640px) {
+  .controles {
+    display: grid;
+    grid-template-columns: 2fr 1.3fr 1.3fr;
+    gap: 0.6rem;
+  }
+
+  .controles__linha {
+    grid-column: span 2;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .botao-buscar {
+    grid-column: 3;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 900px) {
+  .controles { grid-template-columns: 1fr 1fr; }
+  .controles__linha { grid-column: span 2; }
+  .botao-buscar { grid-column: span 2; grid-row: auto; }
 }
