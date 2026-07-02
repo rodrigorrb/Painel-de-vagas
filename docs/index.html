@@ -16,23 +16,72 @@
     <span class="cabecalho__ponto" aria-hidden="true"></span>
     <h1>PAINEL <span>DE VAGAS</span></h1>
   </div>
-  <p class="cabecalho__legenda">Vagas coletadas direto das APIs de contratação das empresas — sem depender do LinkedIn.</p>
+  <p class="cabecalho__legenda">Vagas de empresas monitoradas + busca ampliada por segmento em todo o Brasil.</p>
 </header>
 
 <main class="painel">
 
   <section class="controles" aria-label="Filtros de busca">
     <input id="filtro-busca" type="text" placeholder="Cargo, palavra-chave..." autocomplete="off" />
-    <input id="filtro-local" type="text" placeholder="Local (ex: Remote, Brazil...)" autocomplete="off" />
-    <select id="filtro-empresa">
-      <option value="">Todas as empresas</option>
+    <input id="filtro-local" type="text" placeholder="Local (ex: Remoto, Campinas...)" autocomplete="off" />
+
+    <select id="filtro-segmento">
+      <option value="">Todos os segmentos</option>
+      <option value="it-jobs">TI / Tecnologia</option>
+      <option value="customer-services-jobs">Atendimento / Suporte</option>
+      <option value="accounting-finance-jobs">Financeiro</option>
+      <option value="admin-jobs">Administrativo</option>
+      <option value="hr-jobs">RH</option>
+      <option value="logistics-warehouse-jobs">Logística</option>
+      <option value="engineering-jobs">Engenharia</option>
+      <option value="sales-jobs">Vendas</option>
     </select>
-    <select id="filtro-fonte">
-      <option value="">Todas as fontes</option>
-      <option value="greenhouse">Greenhouse</option>
-      <option value="lever">Lever</option>
-    </select>
+
+    <div class="controles__linha">
+      <select id="filtro-empresa">
+        <option value="">Todas as empresas</option>
+      </select>
+      <select id="filtro-fonte">
+        <option value="">Todas as fontes</option>
+        <option value="greenhouse">Greenhouse</option>
+        <option value="lever">Lever</option>
+        <option value="adzuna">Busca ampliada</option>
+      </select>
+    </div>
+
+    <button id="botao-buscar" type="button" class="botao-buscar">
+      <span class="botao-buscar__texto">Buscar vagas</span>
+      <span class="botao-buscar__spinner" aria-hidden="true"></span>
+    </button>
   </section>
+
+  <details class="config-ampliada">
+    <summary>Configurar busca ampliada (opcional)</summary>
+    <div class="config-ampliada__corpo">
+      <p>
+        A busca ampliada usa a API pública da <strong>Adzuna</strong>, que
+        cobre vagas de qualquer empresa no Brasil, não só as monitoradas
+        aqui. Precisa de uma chave gratuita:
+      </p>
+      <ol>
+        <li>Acesse <a href="https://developer.adzuna.com/" target="_blank" rel="noopener">developer.adzuna.com</a> e crie uma conta grátis</li>
+        <li>Copie o <strong>App ID</strong> e a <strong>App Key</strong> gerados</li>
+        <li>Cole abaixo e toque em "Salvar"</li>
+      </ol>
+      <div class="config-ampliada__campos">
+        <input id="adzuna-app-id" type="text" placeholder="App ID" autocomplete="off" />
+        <input id="adzuna-app-key" type="text" placeholder="App Key" autocomplete="off" />
+        <button id="salvar-adzuna" type="button">Salvar</button>
+      </div>
+      <p class="config-ampliada__aviso">
+        As chaves ficam salvas só neste navegador (não vão para o GitHub).
+        Como o site é estático, elas ficam visíveis a quem inspecionar as
+        requisições da página — não é um risco alto para uso pessoal, mas
+        evite reusar chaves sensíveis aqui.
+      </p>
+      <p id="adzuna-status" class="config-ampliada__status"></p>
+    </div>
+  </details>
 
   <section class="manifesto" aria-label="Resultados">
     <div class="manifesto__cabecalho">
@@ -46,7 +95,7 @@
     <div id="lista-vagas" class="manifesto__corpo">
       <!-- linhas inseridas via JS -->
     </div>
-    <p id="estado-vazio" class="estado-vazio" hidden>Nenhuma vaga encontrada. Rode <code>node collector.js</code> ou ajuste os filtros.</p>
+    <p id="estado-vazio" class="estado-vazio" hidden>Nenhuma vaga encontrada. Ajuste os filtros ou configure a busca ampliada acima.</p>
   </section>
 
   <footer class="rodape">
