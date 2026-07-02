@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Painel de Vagas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="cabecalho">
+  <div class="cabecalho__marca">
+    <span class="cabecalho__ponto" aria-hidden="true"></span>
+    <h1>PAINEL <span>DE VAGAS</span></h1>
+  </div>
+  <p class="cabecalho__legenda">Vagas coletadas direto das APIs de contratação das empresas — sem depender do LinkedIn.</p>
+</header>
+
+<main class="painel">
+
+  <section class="controles" aria-label="Filtros de busca">
+    <input id="filtro-busca" type="text" placeholder="Cargo, palavra-chave..." autocomplete="off" />
+    <input id="filtro-local" type="text" placeholder="Local (ex: Remote, Brazil...)" autocomplete="off" />
+    <select id="filtro-empresa">
+      <option value="">Todas as empresas</option>
+    </select>
+    <select id="filtro-fonte">
+      <option value="">Todas as fontes</option>
+      <option value="greenhouse">Greenhouse</option>
+      <option value="lever">Lever</option>
+    </select>
+  </section>
+
+  <section class="manifesto" aria-label="Resultados">
+    <div class="manifesto__cabecalho">
+      <span class="col col--num">#</span>
+      <span class="col col--titulo">Vaga</span>
+      <span class="col col--empresa">Empresa</span>
+      <span class="col col--local">Local</span>
+      <span class="col col--fonte">Fonte</span>
+      <span class="col col--acao"></span>
+    </div>
+    <div id="lista-vagas" class="manifesto__corpo">
+      <!-- linhas inseridas via JS -->
+    </div>
+    <p id="estado-vazio" class="estado-vazio" hidden>Nenhuma vaga encontrada. Rode <code>node collector.js</code> ou ajuste os filtros.</p>
+  </section>
+
+  <footer class="rodape">
+    <span id="contador-total">—</span>
+    <span id="ultima-atualizacao"></span>
+  </footer>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
