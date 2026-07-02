@@ -1,0 +1,17 @@
+{
+  "name": "vagas-mvp",
+  "version": "0.1.0",
+  "description": "Agregador de vagas de emprego a partir de APIs publicas de ATS (Greenhouse, Lever) com busca e filtros.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "collect": "node collector.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
